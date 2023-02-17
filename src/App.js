@@ -33,8 +33,32 @@ function App() {
         <p>
           Edit done <code>src/App.js</code> and save to reload.
         </p>
+  
+  
+        <ul>
+          {
+            nayoks.map(nayok => <li>{nayok}</li>)
+          }
+          {
+            product.map(productli => <li>{productli.name} {productli.price}</li>)
+          }
+          {
+            product.map(pd => <Product product={pd}></Product>)
+          }
+          <li>{nayoks[0]}</li>
+          <li>{nayoks[1]}</li>
+          <li>{nayoks[2]}</li>
+          <li>{nayoks[3]}</li>
+        </ul>
         
-        
+
+
+
+
+
+
+
+
         <p style={style}>singar:{parson.name+" "+parson.singar}</p>
         <p style={{color:'black', backgroundColor:'yellow'}}>singar:{parson2.name+" "+parson2.sing}</p>
 
