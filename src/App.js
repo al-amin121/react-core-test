@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import React,{ useEffect, useState } from 'react';
 
 function App() {
 // 1st method of: " samelar patan dynamic data " declar
@@ -33,8 +34,9 @@ function App() {
         <p>
           Edit done <code>src/App.js</code> and save to reload.
         </p>
-  
-  
+        
+        <Counter></Counter>
+        <Users></Users>
         <ul>
           {
             nayoks.map(nayok => <li>{nayok}</li>)
@@ -50,14 +52,6 @@ function App() {
           <li>{nayoks[2]}</li>
           <li>{nayoks[3]}</li>
         </ul>
-        
-
-
-
-
-
-
-
 
         <p style={style}>singar:{parson.name+" "+parson.singar}</p>
         <p style={{color:'black', backgroundColor:'yellow'}}>singar:{parson2.name+" "+parson2.sing}</p>
@@ -82,7 +76,42 @@ function App() {
   );
 }
 
+function Users(){
+  const[users, setUser] =useState([]);
+  useEffect(()=>{
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json())
+    .then(data => setUser(data))
+  },[])
+  console.log(users)
+  return(
+    <div>
+      <h3>dynamic:{users.length}</h3>
+      <ul>
+        {
+          users.map(user => <li>{user.title}</li>)
+        }
+      </ul>
+    </div>
+  )
+}
 
+function Counter(){
+  const [count, setCount] =useState(0);
+  const handleIcas = () =>{
+    const newCount =count + 1;
+    setCount(newCount);
+  }
+ 
+    
+  return(
+    <div>
+      <h2>count:{count}</h2>
+      <button onMouseMove={handleIcas}>clik</button>
+      <button onClick={() => setCount(count - 1)}>click back</button>
+    </div>
+  )
+}
 
 // 3rd method of: " samelar patan dynamic data " declar
 var style={border:'2px solid red', margin:'20px'}
